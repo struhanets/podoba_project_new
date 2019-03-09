@@ -10,7 +10,26 @@ from django.shortcuts import render
 #STUDENTS VIEWS
 #Students List
 def students_list(request):
-	return render(request, "students/students_list.html", {})
+	students = (
+		{'id': 1, 
+		'firs_name': u'Марія',
+		'second_name': u'Струганець',
+		'ticket': 2123,
+		'img': 'img/16.jpg'},
+		{'id':2,
+		'firs_name': u'Володимир',
+		'second_name': u'Струганець',
+		'ticket': 254,
+		'img': 'img/39.jpg' 
+		},
+		{'id': 3,
+		'firs_name': u'Монументівна',
+		'second_name': u'Статуя',
+		'ticket': 2009,
+		'img': 'img/40.jpg'
+		},
+		)
+	return render(request, "students/students_list.html", {'students': students})
 #Students Add Form
 def students_add(request):
 	return HttpResponse("<h1>Students Add Form</h1>")
@@ -35,3 +54,7 @@ def groups_edit(request, gid):
 #delete Groups
 def groups_delete(request, gid):
 	return HttpResponse("<h1>Delete Groups {}</h1>".format(did))
+
+#JOURNAL VIEWS
+def journal(request):
+	return HttpResponse("<h1>Journal</h1>")

@@ -38,6 +38,9 @@ urlpatterns = patterns("",
     #Groups delete
     url(r'^groups/(?P<gid>\d+/delete/$)', 'students.views.groups_delete', name='groups_delete'), 
 
+    #Journal urls
+    url(r'^journal/$', 'students.views.journal', name='journal'),
+
     #Admin side
     url(r'^admin/', include(admin.site.urls)),
 

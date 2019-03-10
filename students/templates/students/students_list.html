@@ -68,20 +68,21 @@
                 <tr>
                   <th><a href="">#</a></th>
                   <th>Фото</th>
-                  <th><a href="">Прізвище</a></th>
-                  <th><a href="#">Ім'я</a></th>
+                  <th><a href="">Ім'я</a></th>
+                  <th><a href="#">Прізвище</a></th>
                   <th><a href="#">№ Білету</a></th>
                   <th>Дії</th>
                 </tr>
               </thead>
               <tbody>
                 <!--First Student-->
+                {% for student in students %}
                 <tr>
-                  <td>1</td>
-                  <td><img height="30" width="30" class="img-circle" src="{% static "img/16.jpg" %}" alt="Photo"></td>
-                  <td><a title="Редагувати" href="{% url "students_edit" 1 %}">Струганець</a></td>
-                  <td><a title="Редагувати" href="{% url "students_edit" 1 %}">Марія</a></td>
-                  <td>2123</td>
+                  <td>{{ forloop.counter }}</td>
+                  <td><img height="30" width="30" class="img-circle" src="{{ student.img }}" alt="Photo"></td>
+                  <td><a title="Редагувати" href="{% url "students_edit" 1 %}">{{ student.firs_name }}</a></td>
+                  <td><a title="Редагувати" href="{% url "students_edit" 1 %}">{{ student.second_name }}</a></td>
+                  <td>{{ student.ticket }}</td>
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,52 +90,15 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li><a href="/journal/1">Відвідування</a></li>
-                        <li><a href="{% url "students_edit" 1 %}">Редагувати</a></li>
+                        <li><a href="{% url "students_edit" student.id %}">Редагувати</a></li>
                         <li><a href="{% url "students_delete" 1 %}">Видалити</a></li>
                       </ul>
                     </div>
                   </td>
                 </tr>
+                {% endfor %}
                 <!--Second Student-->
-                <tr>
-                  <td>2</td>
-                  <td><img height="30" width="30" class="img-circle" src="{% static "img/39.jpg" %}" alt="Photo"></td>
-                  <td><a title="Редагувати" href="{% url "students_edit" 2 %}">Струганець</a></td>
-                  <td><a title="Редагувати" href="{% url "students_edit" 2 %}">Володимир</a></td>
-                  <td>254</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Дія <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="/journal/2">Відвідування</a></li>
-                        <li><a href="{% url "students_edit" 2 %}">Редагувати</a></li>
-                        <li><a href="{% url "students_delete" 2 %}">Видалити</a></li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                <!--Third Student-->
-                <tr>
-                  <td>3</td>
-                  <td><img height="30" width="30" class="img-circle" src="{% static "img/40.jpg" %}" alt="Photo"></td>
-                  <td><a title="Редагувати" href="{% url "students_edit" 3 %}">Статуя</a></td>
-                  <td><a title="Редагувати" href="{% url "students_edit" 3 %}">Монументівна</a></td>
-                  <td>2009</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Дія <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="/journal/3">Відвідування</a></li>
-                        <li><a href="{% url "students_edit" 3 %}">Редагувати</a></li>
-                        <li><a href="{% url "students_delete" 3 %}">Видалити</a></li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
+
               </tbody>
             </table>
             <!--End Students listing-->

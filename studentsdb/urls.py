@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
+
 urlpatterns = patterns("",
 	#Students urls
 	url(r'^$', "students.views.students_list", name='home'),
@@ -34,9 +35,9 @@ urlpatterns = patterns("",
     #Groups Add Form
     url(r'^groups/add/$', 'students.views.groups_add', name='groups_add'),
     #Groups Edit
-    url(r'^groups/(?P<gid>\d)+/edit/$', 'students.views.groups_edit', name='groups_edit'),
+    url(r'^groups/(?P<gid>\d+)/edit/$', 'students.views.groups_edit', name='groups_edit'),
     #Groups delete
-    url(r'^groups/(?P<gid>\d+/delete/$)', 'students.views.groups_delete', name='groups_delete'), 
+    url(r'^groups/(?P<gid>\d+)/delete/$', 'students.views.groups_delete', name='groups_delete'), 
 
     #Journal urls
     url(r'^journal/$', 'students.views.journal', name='journal'),

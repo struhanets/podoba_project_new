@@ -1,0 +1,61 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Групи{% endblock meta_title %}
+
+{% block title %}База Груп{% endblock title %}
+
+{% block content %}
+<!-- <a type="button" class="btn btn-primary" href="{% url "students_add" %}">Додати Студента</a>
+ -->
+{% if groups %}
+   <table class="table table-hover table table-striped">
+    <thead>
+      <tr>
+        <th><a href="">#</a></th>
+        <th><a href="">Назва</a></th>
+        <th><a href="#">Староста</a></th>
+        <th>Дії</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--First Student-->
+      {% for group in groups %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a title="Редагувати" href="{% url "groups_edit" group.id %}">{{ group.name_group }}</a></td>
+        <td><a title="Редагувати" href="{% url "groups_edit" group.leader.id %}">{{ group.leader.leader_name }}</a></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Дія <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
+              <li><a href="{% url "groups_delete" 1 %}">Видалити</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+{% endfor %}
+    </tbody>
+    </table>
+{% else %}
+<p>Гарцюємо без груп, поки що</p>
+{% endif %}
+<!--End Students listing-->
+    <!--Start Navigation-->
+    <nav>
+      <ul class="pagination">
+        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="#">2 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">3 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">4 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">5 <span class="sr-only">(current)</span></a></li>
+        <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+      </ul>
+    </nav>
+    <!--End Navigation-->
+{% endblock content %}

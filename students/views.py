@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 
 from django.shortcuts import render
+from django import template
+from django.template import loader
+from django.template import RequestContext
 
 # Create your views here.
 
@@ -29,7 +32,10 @@ def students_list(request):
 		'img': 'static/img/40.jpg'
 		},
 		)
-	return render(request, "students/students_list.html", {'students': students}) 
+
+	template = loader.get_template("students/students_list.html")
+	context = RequestContext(request, {'students': students, 'request':request})
+	return HttpResponse(template.render(context))
 #Students Add Form
 def students_add(request):
 	return HttpResponse("<h1>Students Add Form</h1>")
@@ -56,8 +62,9 @@ def groups_list(request):
 		'name_group': u'МтМ-23',
 		'leader': {'id': 3, 'leader_name': u'Cтатуя Монументівна'}},
 		)
-
-	return render(request, 'students/groups_list.html', {'groups': groups})
+	template = loader.get_template("students/groups_list.html")
+	context = RequestContext(request, {'groups': groups, 'request':request})
+	return HttpResponse(template.render(context))
 #groups Add
 def groups_add(request):
 	return HttpResponse("<h1>Groupe Add Form</h1>")

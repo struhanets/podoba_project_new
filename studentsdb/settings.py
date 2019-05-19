@@ -40,13 +40,9 @@ INSTALLED_APPS = [
     'students',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -125,5 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+# Static adress
 PORTAL_URL = "http://localhost:8000"

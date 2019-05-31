@@ -126,3 +126,8 @@ STATIC_URL = '/static/'
 
 # Static adress
 PORTAL_URL = "http://localhost:8000"
+
+# Media Files
+
+MEDIA_URL = '/media/'
+MMEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')

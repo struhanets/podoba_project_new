@@ -7,10 +7,12 @@ from django.db import models
 class Student(models.Model):
 	"""docstring for Student Model"""
 
+	# We can watch titles in admin interfase in ukrainian language
 	class Meta(object):
 		verbose_name = u"Студент"
 		verbose_name_plural = u"Студенти"
 
+	# greate all elements for object "Student"
 	first_name = models.CharField(
 		max_length=256, 
 		blank=False,
@@ -27,23 +29,24 @@ class Student(models.Model):
 		verbose_name=u"По-батькові",
 		default='')
 	
-	""" birtday = models.DateField(
+	birthday = models.DateField(
 		blank=False,
-		verbose_name="Дата народження",
+		verbose_name=u"Дата народження",
 		null=True)
 
 	photo = models.ImageField(
 	 	blank=True,
-	 	verbose_name="Фото") """
+	 	verbose_name=u"Фото",
+	 	null=True)
 
 	ticket = models.CharField(
 		max_length=256,
 		blank=False,
-		verbose_name="Білет")
+		verbose_name=u"Білет")
 	
 	notes = models.TextField(
 		blank=True,
-		verbose_name="Додаткові нотатки")
+		verbose_name=u"Додаткові нотатки")
 
 	def __unicode__(self):
 		return u"%s %s" % (self.first_name, self.last_name)

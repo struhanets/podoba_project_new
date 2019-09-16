@@ -25,9 +25,15 @@
       {% for student in students %}
       <tr>
         <td>{{ forloop.counter }}</td>
-        <td><img height="30" width="30" class="img-circle" src="{{ student.img }}" alt="Photo"></td>
-        <td><a title="Редагувати" href="{% url "students_edit" student.id %}">{{ student.firs_name }}</a></td>
-        <td><a title="Редагувати" href="{% url "students_edit" student.id %}">{{ student.second_name }}</a></td>
+        <td>
+          {% if student.photo %}
+          <img height="30" width="30" class="img-circle" src="{{ student.photo.url }}" alt="Photo">
+          {% else %}
+          <img height="30" width="30" class="img-circle" src="{% static "img/39.jpg" %}" alt="Photo">
+          {% endif %}
+        </td>
+        <td><a title="Редагувати" href="{% url "students_edit" student.id %}">{{ student.first_name }}</td>
+        <td><a title="Редагувати" href="{% url "students_edit" student.id %}">{{ student.last_name }}</td>
         <td>{{ student.ticket }}</td>
         <td>
           <div class="btn-group">
@@ -42,7 +48,7 @@
           </div>
         </td>
       </tr>
-{% endfor %}
+      {% endfor %}
     </tbody>
     </table>
 <!--End Students listing-->

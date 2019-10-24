@@ -17,12 +17,12 @@ from ..models import Student
 def students_list(request):
 	students = Student.objects.all()
 
-	order_by = request.GET.get('order_by', 'first_name')
+	order_by = request.GET.get('order_by', '')
 
-	students = students.order_by(order_by)
-
-	if request.GET.get('reverse', '') == '1':
-		students = students.reverse()
+	if order_by in ('first_name', 'last_name', 'ticket'):
+		students = students.order_by(order_by)
+		if request.GET.get('reverse', '') == '1':
+			students = students.reverse()
 
 	return render(request, 'students/students_list.html', {'students': students})
 #Students Add Form

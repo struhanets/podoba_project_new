@@ -14,7 +14,7 @@
       <tr>
         <th><a href="">#</a></th>
         <th>Фото</th>
-        <th><a href="">Ім'я</a></th>
+        <th><a href="{% url "home" %}?order_by=first_name"> Ім'я {% if request.GET.order_by == first_name %}↑{% endif %}</a></th>
         <th><a href="#">Прізвище</a></th>
         <th><a href="#">№ Білету</a></th>
         <th>Дії</th>

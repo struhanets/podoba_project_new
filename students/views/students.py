@@ -27,7 +27,7 @@ def students_list(request):
 		if request.GET.get('reverse', '') == '1':
 			students = students.reverse()
 
-	paginator = Paginator(students, 3)
+	paginator = Paginator(students, 4)
 	page = request.GET.get('page')
 	try:
 		students = paginator.page(page)

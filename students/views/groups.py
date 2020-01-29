@@ -1,30 +1,43 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 from django.shortcuts import render
 from django import template
 from django.template import loader
 from django.template import RequestContext
 
+from ..models import Group
+
 #GROUPS VIEWS
 #Groupe List
 def groups_list(request):
-	groups = (
-		{'id': 1,
-		'name_group': u'МтМ-21',
-		'leader': {'id': 1, 'leader_name': u'Струганець Володимир'}},
-		{'id': 2,
-		'name_group': u'Мтм-22',
-		'leader': {'id': 2, 'leader_name': u'Струганець Марія'}},
+	groups = Group.objects.all()
+	order_by = request.GET.get('order_by', '')
 
-		{'id': 3,
-		'name_group': u'МтМ-23',
-		'leader': {'id': 3, 'leader_name': u'Cтатуя Монументівна'}},
-		)
-	template = loader.get_template("students/groups_list.html")
-	context = RequestContext(request, {'groups': groups, 'request':request})
-	return HttpResponse(template.render(context))
+
+	if order_by in ('title', 'leader'):
+		groups = groups.order_by(order_by)
+		if request.GET.get('reverse', '') == '1':
+			groups = groups.reverse()
+
+
+	paginator = Paginator(groups, 3)
+	page = request.GET.get('page')
+	try:
+		groups = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		groups = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		groups = paginator.page(paginator.num_pages)
+
+
+
+	return render(request, 'students/groups_list.html', {'groups': groups})
 #groups Add
 def groups_add(request):
 	return HttpResponse("<h1>Groupe Add Form</h1>")

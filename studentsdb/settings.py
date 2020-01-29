@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'students',
 ]
 
+
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,7 +77,6 @@ TEMPLATE_CONTEXT_PROCESSORS = \
 )
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

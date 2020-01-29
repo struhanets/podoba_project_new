@@ -17,6 +17,7 @@ from ..models import Student
 
 #STUDENTS VIEWS
 #Students List
+
 def students_list(request):
 	students = Student.objects.all()
 	# try to order students list

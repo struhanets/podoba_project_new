@@ -2,9 +2,11 @@
 
 {% load static from staticfiles %}
 
+
 {% block meta_title %}Студенти{% endblock meta_title %}
 
 {% block title %}База Студентів{% endblock title %}
+
 
 {% block content %}
 <a type="button" class="btn btn-primary" href="{% url 'students_add' %}">Додати Студента</a>
@@ -91,6 +93,8 @@
     </nav>
     {% endwith %}
     {% endif %}
+
+
 
     <!--End Navigation-->
 {% endblock content %}
